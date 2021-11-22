@@ -1,9 +1,9 @@
-import { Container } from './Create.styled';
+import { CreateContainer } from './Create.styled';
 
 export default function Create() {
   return (
-    <Container>
+    <CreateContainer>
       <h3>Create</h3>
-    </Container>
+    </CreateContainer>
   );
 }

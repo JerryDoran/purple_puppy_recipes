@@ -1,9 +1,9 @@
-import { Container } from './Search.styled';
+import { SearchContainer } from './Search.styled';
 
 export default function Search() {
   return (
-    <Container>
+    <SearchContainer>
       <h3>Search</h3>
-    </Container>
+    </SearchContainer>
   );
 }

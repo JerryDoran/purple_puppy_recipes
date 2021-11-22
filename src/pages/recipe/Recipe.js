@@ -1,9 +1,9 @@
-import { Container } from './Recipe.styled';
+import { RecipeContainer } from './Recipe.styled';
 
 export default function Recipe() {
   return (
-    <Container>
+    <RecipeContainer>
       <h3>Recipe</h3>
-    </Container>
+    </RecipeContainer>
   );
 }
