@@ -6,6 +6,16 @@ export const RecipeListContainer = styled.div`
   gap: 40px;
   max-width: 1200px;
   margin: 40px auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 0 30px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 30px;
+  }
 `;
 
 export const RecipeCard = styled.div`
@@ -14,12 +24,12 @@ export const RecipeCard = styled.div`
   padding: 20px;
   border-radius: 7px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   position: relative;
 
-  &:hover {
+  /* &:hover {
     transform: rotate(3deg);
-  }
+  } */
 
   h3 {
     color: #555;
@@ -49,6 +59,13 @@ export const RecipeCard = styled.div`
       background: #58249c;
     }
   }
+
+  img {
+    width: 100%;
+    height: 150px;
+    border-radius: 7px;
+    object-fit: cover;
+  }
 `;
 
 export const RecipeMethod = styled.div`
@@ -57,5 +74,3 @@ export const RecipeMethod = styled.div`
   font-size: 0.7em;
   margin: 20px 0;
 `;
-
-// export const Container = styled.div``;
