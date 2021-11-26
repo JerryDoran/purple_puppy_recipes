@@ -7,12 +7,14 @@ import Recipe from './pages/recipe/Recipe';
 // styles
 import './App.css';
 import Navbar from './components/navbar/Navbar';
+import ThemeSelector from './components/themeSelector/ThemeSelector';
 
 function App() {
   return (
     <div className='App'>
       <Router>
         <Navbar />
+        <ThemeSelector />
         <Switch>
           <Route exact path='/'>
             <Home />

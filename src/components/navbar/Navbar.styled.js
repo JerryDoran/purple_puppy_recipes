@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const NavbarContainer = styled.div`
-  background: #58249c;
+  /* background: #58249c; */
+  background: ${(props) => props.color};
   padding: 20px;
   color: #fff;
   border-bottom: 10px solid #8f5bd3;
