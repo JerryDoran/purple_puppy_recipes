@@ -45,6 +45,10 @@ textarea {
   color: #333;
 }
 
+.page-title.dark {
+  color: #fff;
+}
+
 .loading,
 .error {
   text-align: center;

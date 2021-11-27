@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
-export const SearchContainer = styled.div``;
+export const SearchContainer = styled.div`
+  margin: -30px;
 
-// export const Container = styled.div``
-
-// export const Container = styled.div``
-
-// export const Container = styled.div``
-
-// export const Container = styled.div``
-
-// export const Container = styled.div``
+  h2{
+    color: ${({ mode }) => (mode === 'dark' ? '#fff' : '#333')
+  }
+`;

@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const RecipeContainer = styled.div`
   max-width: 700px;
-  margin: 40px auto;
-  padding: 40px;
+  margin: 0 auto;
+  padding: 10px;
   background: #fff;
   border-radius: 5px;
+  background: ${({ mode }) => (mode && mode === 'dark' ? '#555' : '#fff')};
+  color: ${({ mode }) => (mode && mode === 'dark' ? '#e4e4e4' : '')};
 
   .recipeTitle {
     text-align: center;
+    margin: 0;
   }
 
   .time {
@@ -46,7 +49,7 @@ export const RecipeList = styled.ul`
 
 export const ListItem = styled.li`
   margin-right: 10px;
-  color: #777;
+  color: ${({ mode }) => (mode && mode === 'dark' ? '#e4e4e4' : '')};
 
   &::after {
     content: ',';
@@ -55,10 +58,18 @@ export const ListItem = styled.li`
   &:last-child::after {
     content: '.';
   }
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const Method = styled.p`
   text-align: left;
   line-height: 1.5em;
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;

@@ -6,40 +6,45 @@ export const RecipeListContainer = styled.div`
   gap: 40px;
   max-width: 1200px;
   margin: 40px auto;
+  padding-bottom: 30px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    padding: 0 30px;
+    padding: 0 50px;
+    padding-bottom: 30px;
   }
 
   @media (min-width: 768px) and (max-width: 1200px) {
     grid-template-columns: 1fr 1fr;
-    padding: 0 30px;
+    padding: 0 50px;
+    padding-bottom: 30px;
   }
 `;
 
 export const RecipeCard = styled.div`
-  background: #fff;
+  background: ${({ mode }) => (mode && mode === 'dark' ? '#333' : '#fff')};
   color: #333;
   padding: 20px;
   border-radius: 7px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
   /* transition: all 0.3s ease; */
   position: relative;
+  border: ${({ mode }) => (mode === 'dark' ? '1px solid' : '')};
+  border-color: ${({ mode }) => (mode === 'dark' ? '#fff' : '#333')};
 
   /* &:hover {
     transform: rotate(3deg);
   } */
 
   h3 {
-    color: #555;
+    color: ${({ mode }) => (mode === 'dark' ? '#fff' : '#333')};
     margin-bottom: 7px;
     font-size: 22px;
   }
 
   p {
     font-size: 0.7em;
-    color: #999;
+    color: ${({ mode }) => (mode === 'dark' ? '#eee' : '#333')};
     margin-bottom: 8px;
   }
 
@@ -66,10 +71,20 @@ export const RecipeCard = styled.div`
     border-radius: 7px;
     object-fit: cover;
   }
+
+  .delete {
+    position: absolute;
+    top: 90%;
+    right: 20px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    filter: invert(60%);
+  }
 `;
 
 export const RecipeMethod = styled.div`
-  color: #555;
+  color: ${({ mode }) => (mode === 'dark' ? '#eee' : '#333')};
   font-weight: 300;
   font-size: 0.7em;
   margin: 20px 0;
