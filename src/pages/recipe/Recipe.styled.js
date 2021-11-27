@@ -26,6 +26,15 @@ export const RecipeContainer = styled.div`
     border-radius: 7px;
   }
 
+  .edit {
+    display: inline-block;
+    margin-left: 90%;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    filter: invert(60%);
+  }
+
   @media (max-width: 768px) {
     max-width: 90%;
   }

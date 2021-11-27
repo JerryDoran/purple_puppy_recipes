@@ -12,6 +12,7 @@ import {
 import food from '../../assets/food.jpeg';
 import { useTheme } from '../../hooks/useTheme';
 import { useEffect, useState } from 'react';
+import editIcon from '../../assets/editIcon.svg';
 
 export default function Recipe() {
   const [recipe, setRecipe] = useState(null);
@@ -23,11 +24,10 @@ export default function Recipe() {
 
   useEffect(() => {
     setIsPending(true);
-    projectFirestore
+    const unsub = projectFirestore
       .collection('recipes')
       .doc(id)
-      .get()
-      .then((doc) => {
+      .onSnapshot((doc) => {
         if (doc.exists) {
           setIsPending(false);
           setRecipe(doc.data());
@@ -36,7 +36,17 @@ export default function Recipe() {
           setError('Could not find that recipe!');
         }
       });
+
+    return () => {
+      unsub();
+    };
   }, []);
+
+  const handleClick = () => {
+    projectFirestore.collection('recipes').doc(id).update({
+      title: 'Meatloaf',
+    });
+  };
 
   return (
     <RecipeContainer mode={mode}>
@@ -57,6 +67,12 @@ export default function Recipe() {
             })}
           </RecipeList>
           <Method>{recipe.method}</Method>
+          <img
+            className='edit'
+            src={editIcon}
+            alt='edit icon'
+            onClick={handleClick}
+          />
         </>
       )}
     </RecipeContainer>

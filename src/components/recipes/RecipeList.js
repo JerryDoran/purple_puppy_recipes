@@ -23,6 +23,8 @@ export default function RecipeList({ recipes }) {
     projectFirestore.collection('recipes').doc(id).delete();
   };
 
+  const handleEdit = (id) => {};
+
   return (
     <RecipeListContainer>
       {recipes.map((recipe) => (
@@ -34,6 +36,7 @@ export default function RecipeList({ recipes }) {
             {recipe.method.substring(0, 100)}...
           </RecipeMethod>
           <Link to={`/recipes/${recipe.id}`}>Cook This</Link>
+
           <img
             className='delete'
             src={trashcanIcon}
