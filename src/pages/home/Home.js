@@ -1,16 +1,19 @@
 import { projectFirestore } from '../../firebase/config';
 import { useEffect, useState } from 'react';
+import SearchIcon from '../../assets/search.svg';
 
 // components
 import RecipeList from '../../components/recipes/RecipeList';
 
 // styles
-import { HomeContainer } from './Home.styled';
+import { HomeContainer, SearchForm, SearchInput } from './Home.styled';
 
 export default function Home() {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchData, setSearchData] = useState(null);
 
   useEffect(() => {
     setIsPending(true);
@@ -40,11 +43,36 @@ export default function Home() {
       unsub();
     };
   }, []);
+
+  useEffect(() => {
+    const filteredData = data?.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchData(filteredData);
+  }, [searchTerm]);
+
+  console.log(searchData);
+
   return (
     <HomeContainer>
       {error && <p className='error'>{error}</p>}
       {isPending && <p className='loading'>Loading...</p>}
-      {data && <RecipeList recipes={data} />}
+      <SearchForm>
+        <img src={SearchIcon} alt='Search' />
+        <SearchInput
+          type='text'
+          id='search'
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
+          required
+        />
+      </SearchForm>
+      {searchData ? (
+        <RecipeList recipes={searchData} />
+      ) : (
+        data && <RecipeList recipes={data} />
+      )}
+      {/* {data && <RecipeList recipes={data} />} */}
     </HomeContainer>
   );
 }

@@ -13,7 +13,7 @@ export default function Navbar() {
         <Link to='/' className='brand'>
           <h4>Purple Puppy Recipes</h4>
         </Link>
-        <SearchBar />
+        {/* <SearchBar /> */}
         <Link to='/create'>Create Recipe</Link>
       </Nav>
     </NavbarContainer>
