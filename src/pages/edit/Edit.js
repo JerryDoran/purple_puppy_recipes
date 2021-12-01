@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { AddButton, AddForm, CreateContainer } from './Create.styled';
+import { useHistory, useParams } from 'react-router-dom';
+import { AddButton, AddForm, CreateContainer } from './Edit.styled';
 import { projectFirestore } from '../../firebase/config';
 
 export default function Create() {
@@ -10,6 +10,9 @@ export default function Create() {
   const [newIngredient, setNewIngredient] = useState('');
   const [ingredients, setIngredients] = useState('');
   const ingredientInput = useRef(null);
+  const { id } = useParams();
+
+  console.log('recipe id:' + id);
 
   const history = useHistory();
 
@@ -72,7 +75,7 @@ export default function Create() {
             required
           />
         </label>
-        <AddButton>Add</AddButton>
+        <AddButton>Update</AddButton>
       </AddForm>
     </CreateContainer>
   );

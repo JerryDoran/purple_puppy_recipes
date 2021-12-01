@@ -3,6 +3,7 @@ import Home from './pages/home/Home';
 import Create from './pages/create/Create';
 import Search from './pages/search/Search';
 import Recipe from './pages/recipe/Recipe';
+import Edit from './pages/edit/Edit';
 
 // styles
 import './App.css';
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path='/create'>
             <Create />
+          </Route>
+          <Route path='/edit/:id'>
+            <Edit />
           </Route>
           <Route path='/search'>
             <Search />

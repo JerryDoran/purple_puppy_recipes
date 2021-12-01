@@ -13,6 +13,7 @@ import food from '../../assets/food.jpeg';
 import { useTheme } from '../../hooks/useTheme';
 import { useEffect, useState } from 'react';
 import editIcon from '../../assets/editIcon.svg';
+import { Link } from 'react-router-dom';
 
 export default function Recipe() {
   const [recipe, setRecipe] = useState(null);
@@ -42,11 +43,11 @@ export default function Recipe() {
     };
   }, []);
 
-  const handleClick = () => {
-    projectFirestore.collection('recipes').doc(id).update({
-      title: 'Meatloaf',
-    });
-  };
+  // const handleClick = () => {
+  //   projectFirestore.collection('recipes').doc(id).update({
+  //     title: 'Pumpkin Pie',
+  //   });
+  // };
 
   return (
     <RecipeContainer mode={mode}>
@@ -57,22 +58,11 @@ export default function Recipe() {
           <img src={food} alt='food' />
           <h2 className='recipeTitle'>{recipe.title}</h2>
           <p className='time'>(Takes {recipe.cookingTime} to make)</p>
-          <RecipeList>
-            {recipe.ingredients.map((ingredient) => {
-              return (
-                <ListItem mode={mode} key={ingredient}>
-                  {ingredient}
-                </ListItem>
-              );
-            })}
-          </RecipeList>
+          <RecipeList>{recipe.ingredients}</RecipeList>
           <Method>{recipe.method}</Method>
-          <img
-            className='edit'
-            src={editIcon}
-            alt='edit icon'
-            onClick={handleClick}
-          />
+          <Link to={`/edit/${id}`}>
+            <img className='edit' src={editIcon} alt='edit icon' />
+          </Link>
         </>
       )}
     </RecipeContainer>

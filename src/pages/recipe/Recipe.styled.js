@@ -76,7 +76,8 @@ export const ListItem = styled.li`
 export const Method = styled.p`
   text-align: left;
   line-height: 1.5em;
-  margin-top: 30px;
+  margin: 30px auto;
+  max-width: 600px;
 
   @media (max-width: 768px) {
     font-size: 16px;
