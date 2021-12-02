@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AddButton, AddForm, CreateContainer } from './Create.styled';
 import { projectFirestore } from '../../firebase/config';
+import { useTheme } from '../../hooks/useTheme';
 
 export default function Create() {
   const [title, setTitle] = useState('');
@@ -12,6 +13,8 @@ export default function Create() {
   const ingredientInput = useRef(null);
 
   const history = useHistory();
+
+  const { mode } = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +36,9 @@ export default function Create() {
 
   return (
     <CreateContainer>
-      <h2 className='page-title'>Add Recipe</h2>
+      <h2 className={mode === 'dark' ? 'page-title dark' : 'page-title'}>
+        Add Recipe
+      </h2>
       <AddForm onSubmit={handleSubmit}>
         <label>
           <span>Recipe Title</span>
