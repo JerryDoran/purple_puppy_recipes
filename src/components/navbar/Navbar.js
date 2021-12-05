@@ -14,7 +14,7 @@ export default function Navbar() {
           <h4>Purple Puppy Recipes</h4>
         </Link>
         {/* <SearchBar /> */}
-        <Link to='/create'>Create Recipe</Link>
+        <Link to='/create'>Create</Link>
       </Nav>
     </NavbarContainer>
   );

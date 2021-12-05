@@ -21,6 +21,10 @@ export const Nav = styled.nav`
 
   h4 {
     font-family: 'Baloo Da 2', cursive;
+
+    @media (max-width: 500px) {
+      font-size: 13px;
+    }
   }
 
   a:last-child {
@@ -35,6 +39,16 @@ export const Nav = styled.nav`
     &:hover {
       background: #fff;
       color: #333;
+    }
+
+    @media (max-width: 500px) {
+      color: inherit;
+      margin-left: 40px;
+      padding: 4px;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
     }
   }
 `;
