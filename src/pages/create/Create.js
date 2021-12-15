@@ -9,7 +9,8 @@ export default function Create() {
   const [method, setMethod] = useState('');
   const [cookingTime, setCookingTime] = useState('');
   const [newIngredient, setNewIngredient] = useState('');
-  const [ingredients, setIngredients] = useState('');
+  // const [ingredients, setIngredients] = useState('');
+  const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(null);
 
   const history = useHistory();
@@ -19,9 +20,11 @@ export default function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(title, method, cookingTime, ingredients);
+
     const doc = {
       title,
-      ingredients,
+      ingredientList: ingredients,
       method,
       cookingTime: cookingTime + ' minutes',
     };
@@ -32,6 +35,25 @@ export default function Create() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+
+    const ing = newIngredient.trim();
+
+    if (ing && !ingredients.includes(ing)) {
+      setIngredients((prevIngredients) => [...prevIngredients, ing]);
+    }
+    setNewIngredient('');
+    ingredientInput.current.focus();
+  };
+
+  const handleDelete = (ing) => {
+    const filteredIngredients = ingredients.filter(
+      (ingredient) => ingredient !== ing
+    );
+    setIngredients(filteredIngredients);
   };
 
   return (
@@ -51,14 +73,40 @@ export default function Create() {
         </label>
 
         <label>
-          <span>Recipe Ingredients</span>
+          {/* <span>Recipe Ingredients</span>
           <input
             type='text'
             onChange={(e) => setIngredients(e.target.value)}
             value={ingredients}
             required
-          />
+          /> */}
+          <span>Recipe Ingredients</span>
+          <div className='recipeIngredients'>
+            <input
+              type='text'
+              onChange={(e) => setNewIngredient(e.target.value)}
+              value={newIngredient}
+              // required
+              ref={ingredientInput}
+            />
+            <button className='add' onClick={handleAdd}>
+              Add
+            </button>
+          </div>
         </label>
+        <span className='ingredientSpan'>
+          {ingredients.map((ingredient) => {
+            return (
+              <p
+                onClick={() => handleDelete(ingredient)}
+                className='ingredientChip'
+                key={ingredient}
+              >
+                {ingredient}
+              </p>
+            );
+          })}
+        </span>
 
         <label>
           <span>Recipe method</span>

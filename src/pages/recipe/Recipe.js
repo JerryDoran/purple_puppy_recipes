@@ -1,5 +1,4 @@
 import { useParams } from 'react-router';
-import { useFetch } from '../../hooks/useFetch';
 import { projectFirestore } from '../../firebase/config';
 import {
   Error,
@@ -58,7 +57,11 @@ export default function Recipe() {
           <img src={food} alt='food' />
           <h2 className='recipeTitle'>{recipe.title}</h2>
           <p className='time'>(Takes {recipe.cookingTime} to make)</p>
-          <RecipeList>{recipe.ingredients}</RecipeList>
+          <RecipeList>
+            {recipe.ingredientList.map((ing) => {
+              return <ListItem>{ing}</ListItem>;
+            })}
+          </RecipeList>
           <Method>{recipe.method}</Method>
           <Link to={`/edit/${id}`}>
             <img className='edit' src={editIcon} alt='edit icon' />

@@ -20,10 +20,19 @@ export const Nav = styled.nav`
   }
 
   h4 {
+    display: inline;
     font-family: 'Baloo Da 2', cursive;
 
-    @media (max-width: 500px) {
-      font-size: 13px;
+    @media (max-width: 600px) {
+      font-size: 20px;
+    }
+  }
+
+  .brandName {
+    margin-left: 4px;
+
+    @media (max-width: 600px) {
+      display: none;
     }
   }
 

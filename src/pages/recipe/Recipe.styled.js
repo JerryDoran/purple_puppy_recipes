@@ -45,10 +45,12 @@ export const Error = styled.p``;
 export const Pending = styled.p``;
 
 export const RecipeList = styled.ul`
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   margin-top: 20px;
   font-size: 18px;
+  padding-left: 30px;
+  padding-right: 30px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -57,8 +59,9 @@ export const RecipeList = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  margin-right: 10px;
+  text-align: center;
   color: ${({ mode }) => (mode && mode === 'dark' ? '#e4e4e4' : '')};
+  font-size: 14px;
 
   &::after {
     content: ',';
@@ -78,8 +81,9 @@ export const Method = styled.p`
   line-height: 1.5em;
   margin: 30px auto;
   max-width: 600px;
+  font-size: 16px;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 18px;
   }
 `;

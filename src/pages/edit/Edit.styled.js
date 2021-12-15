@@ -12,14 +12,65 @@ export const CreateContainer = styled.div`
 `;
 
 export const AddForm = styled.form`
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+
   span {
     display: block;
     margin: 30px 0 10px;
   }
 
+  .delete {
+    background: transparent;
+    color: #777;
+    font-size: 30px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .edit {
+    background: transparent;
+    color: #777;
+    font-size: 30px;
+    border: none;
+    margin-left: 15px;
+    cursor: pointer;
+
+    &:hover {
+      color: green;
+    }
+  }
+
   .ingredient {
     font-weight: bold;
     font-size: 14px;
+  }
+
+  .ingredientContainer {
+    display: flex;
+  }
+
+  .ingredientSpan {
+    display: flex;
+    margin-left: -15px;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+
+  .ingredientChip {
+    display: inline;
+    font-size: 14px;
+    margin-left: 10px;
+    background: #777;
+    padding: 2px 7px;
+    border-radius: 40px;
+    cursor: pointer;
   }
 `;
 

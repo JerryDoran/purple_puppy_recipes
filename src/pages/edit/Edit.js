@@ -3,17 +3,19 @@ import { useHistory, useParams } from 'react-router-dom';
 import { AddButton, AddForm, CreateContainer } from './Edit.styled';
 import { projectFirestore } from '../../firebase/config';
 import { useTheme } from '../../hooks/useTheme';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 
 export default function Create() {
   const [title, setTitle] = useState('');
   const [method, setMethod] = useState('');
   const [cookingTime, setCookingTime] = useState('');
-  const [ingredients, setIngredients] = useState('');
+  const [ingredient, setIngredient] = useState('');
+  const [ingredients, setIngredients] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(false);
   const { id } = useParams();
-
-  console.log('recipe id:' + id);
+  const ingredientInput = useRef(null);
 
   const { mode } = useTheme();
 
@@ -30,7 +32,7 @@ export default function Create() {
           setTitle(doc.data().title);
           setMethod(doc.data().method);
           setCookingTime(doc.data().cookingTime);
-          setIngredients(doc.data().ingredients);
+          setIngredients(doc.data().ingredientList);
         } else {
           setIsPending(false);
           setError('Could not find that recipe!');
@@ -47,7 +49,7 @@ export default function Create() {
 
     const updatedDoc = {
       title,
-      ingredients,
+      ingredientList: ingredients,
       method,
       cookingTime,
     };
@@ -58,6 +60,27 @@ export default function Create() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleDelete = (e, ing) => {
+    e.preventDefault();
+    const filteredIngredients = ingredients.filter(
+      (ingredient) => ingredient !== ing
+    );
+    setIngredients(filteredIngredients);
+    setIngredient('');
+    ingredientInput.current.focus();
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const ing = ingredient.trim();
+
+    if (ing && !ingredients.includes(ing)) {
+      setIngredients((prevIngredients) => [...prevIngredients, ing]);
+    }
+    setIngredient('');
+    ingredientInput.current.focus();
   };
 
   return (
@@ -78,13 +101,42 @@ export default function Create() {
 
         <label>
           <span>Recipe Ingredients</span>
-          <input
-            type='text'
-            onChange={(e) => setIngredients(e.target.value)}
-            value={ingredients}
-            required
-          />
+          <div className='ingredientContainer'>
+            <input
+              type='text'
+              onChange={(e) => setIngredient(e.target.value)}
+              value={ingredient}
+              ref={ingredientInput}
+            />
+            <button
+              className='delete'
+              onClick={(e) => handleDelete(e, ingredient)}
+            >
+              <FaRegTrashAlt />
+            </button>
+            <button className='edit' onClick={(e) => handleUpdate(e)}>
+              <FaPlus />
+            </button>
+          </div>
         </label>
+        <span className='ingredientSpan'>
+          {ingredients &&
+            ingredients.map((ingredient) => {
+              return (
+                <p
+                  className='ingredientChip'
+                  style={{
+                    color: mode === 'dark' ? '#ccc' : '#333',
+                    background: mode === 'dark' ? '#777' : 'transparent',
+                  }}
+                  key={ingredient}
+                  onClick={() => setIngredient(ingredient)}
+                >
+                  {ingredient}
+                </p>
+              );
+            })}
+        </span>
 
         <label>
           <span>Recipe method</span>

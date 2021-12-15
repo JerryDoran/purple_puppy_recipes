@@ -11,7 +11,8 @@ export default function Navbar() {
     <NavbarContainer color={color}>
       <Nav>
         <Link to='/' className='brand'>
-          <h4>Purple Puppy Recipes</h4>
+          <h4>Purple Puppy</h4>
+          <h4 className='brandName'>Recipes</h4>
         </Link>
         {/* <SearchBar /> */}
         <Link to='/create'>Create</Link>
