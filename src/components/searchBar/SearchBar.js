@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SearchButton, SearchForm, SearchInput } from './SearchBar.styled';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    history.push(`/search?q=${searchTerm}`);
+    navigate(`/search?q=${searchTerm}`);
   };
 
   return (
@@ -24,7 +24,7 @@ export default function SearchBar() {
         value={searchTerm}
         required
       />
-      <SearchButton type="submit">Go</SearchButton>
+      <SearchButton type='submit'>Go</SearchButton>
     </SearchForm>
   );
 }

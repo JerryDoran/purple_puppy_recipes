@@ -40,7 +40,7 @@ export default function Recipe() {
     return () => {
       unsub();
     };
-  }, []);
+  }, [id]);
 
   // const handleClick = () => {
   //   projectFirestore.collection('recipes').doc(id).update({

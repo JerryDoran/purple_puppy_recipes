@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AddButton, AddForm, CreateContainer } from './Create.styled';
 import { projectFirestore } from '../../firebase/config';
 import { useTheme } from '../../hooks/useTheme';
@@ -13,7 +13,7 @@ export default function Create() {
   const [ingredients, setIngredients] = useState([]);
   const ingredientInput = useRef(null);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { mode } = useTheme();
 
@@ -31,7 +31,7 @@ export default function Create() {
 
     try {
       await projectFirestore.collection('recipes').add(doc);
-      history.push('/');
+      navigate('/');
     } catch (error) {
       console.log(error);
     }

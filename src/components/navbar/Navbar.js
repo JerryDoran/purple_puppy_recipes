@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
-import SearchBar from '../searchBar/SearchBar';
 
 // styles
 import { NavbarContainer, Nav } from './Navbar.styled';
 
 export default function Navbar() {
-  const { color, changeColor } = useTheme();
+  const { color } = useTheme();
   return (
     <NavbarContainer color={color}>
       <Nav>
@@ -14,7 +13,7 @@ export default function Navbar() {
           <h4>Purple Puppy</h4>
           <h4 className='brandName'>Recipes</h4>
         </Link>
-        {/* <SearchBar /> */}
+
         <Link to='/create'>Create</Link>
       </Nav>
     </NavbarContainer>

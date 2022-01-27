@@ -49,7 +49,7 @@ export default function Home() {
       recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchData(filteredData);
-  }, [searchTerm]);
+  }, [searchTerm, data]);
 
   console.log(searchData);
 

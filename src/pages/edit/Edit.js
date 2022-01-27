@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AddButton, AddForm, CreateContainer } from './Edit.styled';
 import { projectFirestore } from '../../firebase/config';
 import { useTheme } from '../../hooks/useTheme';
@@ -19,7 +19,7 @@ export default function Create() {
 
   const { mode } = useTheme();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsPending(true);
@@ -55,9 +55,12 @@ export default function Create() {
     };
 
     try {
+      setIsPending(true);
       await projectFirestore.collection('recipes').doc(id).update(updatedDoc);
-      history.push(`/recipes/${id}`);
+      navigate(`/recipes/${id}`);
+      setIsPending(false);
     } catch (error) {
+      setIsPending(false);
       console.log(error);
     }
   };

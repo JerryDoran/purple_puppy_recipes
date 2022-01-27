@@ -23,8 +23,6 @@ export default function RecipeList({ recipes }) {
     projectFirestore.collection('recipes').doc(id).delete();
   };
 
-  const handleEdit = (id) => {};
-
   return (
     <RecipeListContainer>
       {recipes.map((recipe) => (
